@@ -7,6 +7,10 @@ var switchItem = false;
 var cycleComplete = false;
 var spawn = true;
 
+// WINSCREEN
+var winScreen = document.getElementById("win");
+var cont = document.getElementById('cont');
+
 // ZOMBIES
 var table1 =document.getElementById("table1");
 var table2 =document.getElementById("table2");
@@ -42,12 +46,16 @@ var count = zombieCount.innerHTML;
 // TIMER
 var playerTimer = setInterval(movePlayer,30);
 var gameTimer = setInterval(selectItem,30);
+var gameTime = setInterval(checkSpawn,30);
 
-if(spawn){
-	console.log('IN THE IF STATEMENT');
-	var spawnTimer = setInterval(zombieSpawn, 5000);
-}else{
-	// Go to end screen
+
+function checkSpawn(){
+	if(spawn){
+		var spawnTimer = setInterval(zombieSpawn, 15000);
+	}else{
+		clearInterval(spawnTimer);
+		win();
+	}
 }
 
 
@@ -219,11 +227,9 @@ function zombieSpawn(){
 		count--;
 		zombieCount.innerHTML = count;
 		
-		console.log('spawn before');
-		console.log(spawn);
-		if(count <= 0){
+		if (count <=0) {
+			win();
 			spawn = false;
-			console.log('spawn after');
 			console.log(spawn);
 		}
 	}
@@ -326,3 +332,8 @@ function angerSeat(table, index, angerLevel, timer,tb){
 	}, 5000);
 }
 
+function win(){
+	winScreen.style.visibility="visible";
+	cont.addEventListener("click", zombieSpawn);
+	clearInterval(gameTime);
+}

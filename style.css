@@ -180,6 +180,37 @@ body{
 }
 
 
+/* WIN */
+#win{
+	width: 1360px;
+	height: 750px;
+	font-family: 'Oswald', sans-serif;
+	color: #fff;
+	position: absolute;
+	top: 9px;
+	visibility: hidden;
+	z-index: 200;
+}
+
+.win h1{
+	position: absolute;
+	top:12%;
+	left: 68%;
+	font-size: 100px;
+
+}
+
+.win img{
+	height: auto;
+	width: 1360px;
+}
+
+
+
+
+
+
+
 
 
 
@@ -323,23 +354,7 @@ body{
 
 }
 
-/* WIN */
-#win{
-	width: 1000px;
-	height: 700px;
-	font-family: 'Oswald', sans-serif;
-	color: #fff;
-	position: absolute;
-	top: 9px;
-	visibility: hidden;
-}
 
-.win h1{
-	position: absolute;
-	top:12%;
-	left: 68%;
-	font-size: 100px;
-}
 
 .food img{
 	height: 100px;
