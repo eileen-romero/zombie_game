@@ -334,6 +334,10 @@ function angerSeat(table, index, angerLevel, timer,tb){
 
 function win(){
 	winScreen.style.visibility="visible";
-	cont.addEventListener("click", zombieSpawn);
+	cont.addEventListener("click", continueGame);
 	clearInterval(gameTime);
+}
+
+function continueGame(){
+	winScreen.style.visibility = "hidden";
 }
