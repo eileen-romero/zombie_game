@@ -5,6 +5,7 @@ var rightArrow = false;
 var serve = false;
 var switchItem = false;
 var cycleComplete = false;
+var spawn = true;
 
 // ZOMBIES
 var table1 =document.getElementById("table1");
@@ -41,7 +42,14 @@ var count = zombieCount.innerHTML;
 // TIMER
 var playerTimer = setInterval(movePlayer,30);
 var gameTimer = setInterval(selectItem,30);
-var spawnTimer = setInterval(zombieSpawn, Math.floor(Math.random() * 10000) + 1000);
+
+if(spawn){
+	console.log('IN THE IF STATEMENT');
+	var spawnTimer = setInterval(zombieSpawn, 5000);
+}else{
+	// Go to end screen
+}
+
 
 var timer0;
 var timer1;
@@ -178,39 +186,41 @@ function movePlayer(){
 }
 
 function zombieSpawn(){
-	while(count>0){
-		var seat = Math.floor(Math.random()*5);
-		// If table is empty, then put a zombie there!
-		if(!tablesArray[seat]){
-			// declares table is taken
-			tablesArray[seat] = true;
+
+	var seat = Math.floor(Math.random()*5);
+	// If table is empty, then put a zombie there!
+	if(!tablesArray[seat]){
+		// declares table is taken
+		tablesArray[seat] = true;
 
 
 
-			switch(seat){
-			
-			// places zombie in seat 
-			case 0:
-				angerSeat(table1, 0, angerLevel1, timer0,tb1);
-				break;	
-			case 1:
-				angerSeat(table2, 1, angerLevel2, timer1, tb2);
-				break;	
-			case 2:
-				angerSeat(table3, 2, angerLevel3, timer2, tb3);
-				break;
-			case 3:
-				angerSeat(table4, 3, angerLevel4, timer3, tb4);
-				break;
-			case 4:
-				angerSeat(table5, 4, angerLevel5, timer4, tb5);
-				break;	
-			}
+		switch(seat){
+		
+		// places zombie in seat 
+		case 0:
+			angerSeat(table1, 0, angerLevel1, timer0,tb1);
+			break;	
+		case 1:
+			angerSeat(table2, 1, angerLevel2, timer1, tb2);
+			break;	
+		case 2:
+			angerSeat(table3, 2, angerLevel3, timer2, tb3);
+			break;
+		case 3:
+			angerSeat(table4, 3, angerLevel4, timer3, tb4);
+			break;
+		case 4:
+			angerSeat(table5, 4, angerLevel5, timer4, tb5);
+			break;	
+		}
 
-			// decreases hoard count
-			count--;
-			zombieCount.innerHTML = count;
-			
+		// decreases hoard count
+		count--;
+		zombieCount.innerHTML = count;
+		
+		if(count == 0){
+			spawn = false;
 		}
 	}
 }
@@ -234,7 +244,6 @@ function selectItem(){
 
 function angerSeat(table, index, angerLevel, timer,tb){
 // generates random gender
-
 	var gender = Math.floor(Math.random()*2);
 	//pick random food
 
