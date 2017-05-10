@@ -78,6 +78,8 @@ var trayEmptyArray = [true,
 	true,
 	true];
 
+var servedFood = [0, 0, 0, 0, 0];
+
 var itemsArray = [document.getElementById("item1"),
 document.getElementById("item2"),
 document.getElementById("item3"),
@@ -177,6 +179,7 @@ function movePlayer() {
 		if (trayEmptyArray[seatNum] && tablesArray[seatNum]) {
 			// PLACES ITEM IN THE TRAY
 			trayArray[seatNum].innerHTML = itemsArray[itemSelected].innerHTML;
+			servedFood[seatNum] = itemSelected + 1;
 
 			// TRAY IS FULL
 			trayEmptyArray[seatNum] = false;
@@ -191,8 +194,6 @@ function zombieSpawn() {
 
 	if (spawn) {
 		var seat = Math.floor(Math.random() * 5);
-		var food = Math.floor(Math.random() * 4);
-
 
 		// If table is empty, then put a zombie there!
 		if (!tablesArray[seat]) {
@@ -232,10 +233,8 @@ function zombieSpawn() {
 
 		}
 	}
-	else
-	{
-		if(deadZombies == hoardSize && !winning)
-		{
+	else {
+		if (deadZombies == hoardSize && !winning) {
 			win();
 		}
 	}
@@ -264,35 +263,65 @@ function selectItem() {
 function angerSeat(table, index, angerLevel, timer, tb, tray) {
 	// generates random gender
 	var gender = Math.floor(Math.random() * 2);
+	var food = Math.floor(Math.random() * 4) + 1;
+	var foodString;
+
+	switch (food) {
+		case 1:
+			foodString = '<img src="images/heart_order.png">';
+			break;
+		case 2:
+			foodString = '<img src="images/eye_order.png">';
+			break;
+		case 3:
+			foodString = '<img src="images/brain_order.png">';
+			break;
+		case 4:
+			foodString = '<img src="images/tongue_order.png">';
+			break;
+	}
+
+
 
 	//pick random food
 	timer = setInterval(function (event) {
 		// function here
 
+		if (!trayEmptyArray[index] && food == servedFood[index]) {
+			angerLevel = 3;
+			tray.innerHTML = ' ';
+			servedFood[index] = 0;
+			trayEmptyArray[index] = true;
+		}
+		else if (!trayEmptyArray[index] && food != servedFood[index]) {
+			angerLevel = 2;
+			tray.innerHTML = ' ';
+			servedFood[index] = 0;
+			trayEmptyArray[index] = true;
+		}
 
 		if (gender == 1) {
+
 
 			// BOY
 			switch (angerLevel) {
 				case 0:
-					//check if food on table matches food in thought bubble
-					tb.innerHTML = '<img src="images/order.png"> <img src="images/eye.png" class="item">';
+					tb.innerHTML = foodString;
 					table.innerHTML = '<img src="images/z-boy_normal.png">';
 					angerLevel++;
 					break;
 				case 1:
-					//check if food on table matches food in thought bubble
 					table.innerHTML = '<img src="images/z-boy_angry.png">';
 					angerLevel++;
 					break;
 				case 2:
-					//check if food on table matches food in thought bubble, break
 					table.innerHTML = '<img src="images/z-boy_shot.png">';
 					tb.innerHTML = ' ';
 					angerLevel++;
 					//lose life
 					break;
 				case 3:
+					tb.innerHTML = ' ';
 					table.innerHTML = ' ';
 					tray.innerHTML = ' ';
 					angerLevel = 0;
@@ -307,24 +336,22 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 			// GIRL
 			switch (angerLevel) {
 				case 0:
-					//check if food on table matches food in thought bubble
-					tb.innerHTML = '<img src="images/order.png">';
+					tb.innerHTML = foodString;
 					table.innerHTML = '<img src="images/z-girl_normal.png">';
 					angerLevel++;
 					break;
 				case 1:
-					//check if food on table matches food in thought bubble
 					table.innerHTML = '<img src="images/z-girl_angry.png">';
 					angerLevel++;
 					break;
 				case 2:
-					//check if food on table matches food in thought bubble, break
 					table.innerHTML = '<img src="images/z-girl_shot.png">';
 					tb.innerHTML = ' ';
 					angerLevel++;
 					//lose life
 					break;
 				case 3:
+					tb.innerHTML = ' ';
 					table.innerHTML = ' ';
 					tray.innerHTML = ' ';
 					angerLevel = 0;
