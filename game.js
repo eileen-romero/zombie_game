@@ -219,8 +219,12 @@ function zombieSpawn(){
 		count--;
 		zombieCount.innerHTML = count;
 		
-		if(count == 0){
+		console.log('spawn before');
+		console.log(spawn);
+		if(count <= 0){
 			spawn = false;
+			console.log('spawn after');
+			console.log(spawn);
 		}
 	}
 }
