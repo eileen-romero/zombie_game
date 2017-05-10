@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Cook for your Life</title>
+
+	<link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Oswald" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+	<div class="gameWindow">
+	<!-- GAME PLAY -->
+
+		<!-- KITCHEN -->
+		<div class="kitchen">
+			<div id="item1" class="item-icon selected">
+				<img src="images/heart.png" alt="">
+			</div>
+			<div id="item2" class="item-icon">
+				<img src="images/eye.png" alt="">
+			</div>
+			<div id="item3" class="item-icon">
+				<img src="images/brain.png" alt="">
+			</div>
+			<div id="item4" class="item-icon">
+				<img src="images/tongue.png" alt="">
+			</div>
+		</div>
+
+		<!-- HOARD COUNT -->
+
+		<div id="hoardCount" class="hoardCount">
+			<h3>HOARD:</h3>
+			<h3 id="zombieCount">5</h3>
+		</div>
+
+		<!-- PLAYER -->
+		<img src="images/player.png" alt="the player" id="player" class="player">
+
+		<!-- TRAYS -->
+		<div id="counter">
+			<div class="counter" id="tray1"></div>
+			<div class="counter" id="tray2"></div>
+			<div class="counter" id="tray3"></div>
+			<div class="counter" id="tray4"></div>
+			<div class="counter" id="tray5"></div>
+		</div>
+
+		<!-- THOUGHT BUBBLES -->
+		<div id="thoughts">
+			<div class="order" id="tb1">
+			</div>
+			<div class="order" id="tb2">
+			</div>
+			<div class="order" id="tb3">
+			</div>
+			<div class="order" id="tb4">
+			</div>
+			<div class="order" id="tb5">
+			</div>
+		</div>
+		
+
+		<!-- FOREGROUND -->
+		<img src="images/foreground.png" alt="" id="fg">
+
+		<!-- BACKGROUND -->
+		<img src="images/background.jpg" alt="" id="bg">
+
+
+		<!-- ZOMBIE DIVS -->
+		<div class="seat" id="table1">
+		</div>
+
+		<div class="seat" id="table2"></div>
+
+		<div class="seat" id="table3"></div>
+
+		<div class="seat" id="table4"></div>
+
+		<div class="seat" id="table5"></div>
+
+			
+
+<!-- FOOOD -->
+			<!-- <div class="abs food">
+				<img src="images/brain.png" alt="" id="brain">
+				<img src="images/eye.png" alt="" id="eye">
+				<img src="images/heart.png" alt="" id="heart">
+				<img src="images/tongue.png" alt="" id="tongue">
+			</div>
+
+			<div class="score">HOARD: 40</div>
+
+			<div class="ammo">
+				<img src="images/life_icon.png" alt="">
+				<h2>x4</h2>
+			</div> -->
+
+		<!-- START SCREEN -->
+<!-- 			<div id="start">
+ -->				<!-- TOP = BOTTOM LAYER 				<img src="images/screen_bg.png" alt=" blood splatter" class="abs" >
+				<img src="images/title.png" alt="COOK for your LIFE" class="abs">
+
+				<button id="startButton" class="large-btn button-font">START</button>
+				<button id="instructions-btn" class="small-btn button-font">INSTRUCTIONS</button>
+
+			</div> -->
+
+
+
+		<!-- INSTRUCTION SCREEN 
+		 	<div id="instructions">
+				<img src="images/screen_bg.png" alt=" blood splatter" class="abs">
+				<div class="text">
+					<h2>INSTRUCTIONS - COOK FOR YOUR LIFE!!!!!!!!</h2>
+					<p>Use the arrow keys to move left and right <br>Press space bar to pick-up/serve food on the bar
+					<br>Give zombie what it wants quick enough and you won’t get eaten <br>WARNING  - they get angry quicker if you serve the wrong item
+						<br>Fail to please them and you’ll have to use your scarce ammo <br>as a last ditch effort to survive. Use wisely...</p>
+				</div>
+				
+
+				<button id="back-btn" class="small-btn-corner button-font" >BACK</button> 
+				 
+			</div> -->
+
+
+	<!-- GAME OVER SCREEN 
+			<div id="gameOver">
+				<img src="images/game_over.png" alt="Game Over: Feeding them just wasn't enough so they ate you.">
+				<button id="retry-btn" class="button-font large-btn-over">RETRY</button>
+				<button id="instructions-btn" class="button-font small-btn-over">INSTRUCTIONS</button>
+			</div> -->
+
+<!-- WIN SCREEN 
+			<div id="win" class="win">
+				<img src="images/win.png" alt="Zombie Ammo Drop" class="abs">
+				<h1> +1 </h1>
+				<button id="continue-btn" class="button-font small-btn-corner">CONTINUE?</button>
+			</div> -->
+	</div>	
+
+<script type="text/javascript" src="game.js"></script>
+
+	
+</body>
+</html>
