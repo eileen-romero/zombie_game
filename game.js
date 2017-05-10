@@ -34,6 +34,7 @@ var angerLevel5 = 0;
 
 // HOARD COUNTER
 var zombieCount = document.getElementById("zombieCount");
+var deadZombies = 0;
 
 // KITCHEN ITEMS
 var itemSelected = 0;
@@ -188,7 +189,7 @@ function zombieSpawn() {
 	if (spawn) {
 		var seat = Math.floor(Math.random() * 5);
 
-		
+
 
 		// If table is empty, then put a zombie there!
 		if (!tablesArray[seat]) {
@@ -229,6 +230,13 @@ function zombieSpawn() {
 
 		}
 	}
+	else
+	{
+		if(deadZombies == 5)
+		{
+			win();
+		}
+	}
 
 
 }
@@ -254,79 +262,80 @@ function selectItem() {
 function angerSeat(table, index, angerLevel, timer, tb, tray) {
 	// generates random gender
 	var gender = Math.floor(Math.random() * 2);
-	
+
 	//pick random food
 	timer = setInterval(function (event) {
 		// function here
 
-		
-			if (gender == 1) {
 
-				//clearInterval(timer);
-				//cycleComplete = false;
+		if (gender == 1) {
 
-				// BOY
-				switch (angerLevel) {
-					case 0:
-						//check if food on table matches food in thought bubble
-						tb.innerHTML = '<img src="images/order.png">';
-						table.innerHTML = '<img src="images/z-boy_normal.png">';
-						angerLevel++;
-						break;
-					case 1:
-						//check if food on table matches food in thought bubble
-						table.innerHTML = '<img src="images/z-boy_angry.png">';
-						angerLevel++;
-						break;
-					case 2:
-						//check if food on table matches food in thought bubble, break
-						table.innerHTML = '<img src="images/z-boy_shot.png">';
-						tb.innerHTML = ' ';
-						angerLevel++;
-						//lose life
-						break;
-					case 3:
-						table.innerHTML = ' ';
-						tray.innerHTML = ' ';
-						angerLevel = 0;
-						tablesArray[index] = false;
-						clearInterval(timer);
-						break;
+			// BOY
+			switch (angerLevel) {
+				case 0:
+					//check if food on table matches food in thought bubble
+					tb.innerHTML = '<img src="images/order.png">';
+					table.innerHTML = '<img src="images/z-boy_normal.png">';
+					angerLevel++;
+					break;
+				case 1:
+					//check if food on table matches food in thought bubble
+					table.innerHTML = '<img src="images/z-boy_angry.png">';
+					angerLevel++;
+					break;
+				case 2:
+					//check if food on table matches food in thought bubble, break
+					table.innerHTML = '<img src="images/z-boy_shot.png">';
+					tb.innerHTML = ' ';
+					angerLevel++;
+					//lose life
+					break;
+				case 3:
+					table.innerHTML = ' ';
+					tray.innerHTML = ' ';
+					angerLevel = 0;
+					tablesArray[index] = false;
+					deadZombies++;
+					console.log(index + " is dead");
+					clearInterval(timer);
+					break;
 
-				}
-			} else {
-
-				// GIRL
-				switch (angerLevel) {
-					case 0:
-						//check if food on table matches food in thought bubble
-						tb.innerHTML = '<img src="images/order.png">';
-						table.innerHTML = '<img src="images/z-girl_normal.png">';
-						angerLevel++;
-						break;
-					case 1:
-						//check if food on table matches food in thought bubble
-						table.innerHTML = '<img src="images/z-girl_angry.png">';
-						angerLevel++;
-						break;
-					case 2:
-						//check if food on table matches food in thought bubble, break
-						table.innerHTML = '<img src="images/z-girl_shot.png">';
-						tb.innerHTML = ' ';
-						angerLevel++;
-						//lose life
-						break;
-					case 3:
-						table.innerHTML = ' ';
-						tray.innerHTML = ' ';
-						angerLevel = 0;
-						tablesArray[index] = false;
-						clearInterval(timer);
-						break;
-
-				}
 			}
-		
+		} else {
+
+			// GIRL
+			switch (angerLevel) {
+				case 0:
+					//check if food on table matches food in thought bubble
+					tb.innerHTML = '<img src="images/order.png">';
+					table.innerHTML = '<img src="images/z-girl_normal.png">';
+					angerLevel++;
+					break;
+				case 1:
+					//check if food on table matches food in thought bubble
+					table.innerHTML = '<img src="images/z-girl_angry.png">';
+					angerLevel++;
+					break;
+				case 2:
+					//check if food on table matches food in thought bubble, break
+					table.innerHTML = '<img src="images/z-girl_shot.png">';
+					tb.innerHTML = ' ';
+					angerLevel++;
+					//lose life
+					break;
+				case 3:
+					table.innerHTML = ' ';
+					tray.innerHTML = ' ';
+					angerLevel = 0;
+					tablesArray[index] = false;
+					deadZombies++;
+					console.log(index + " is dead");
+					clearInterval(timer);
+					break;
+
+			}
+		}
+
 	}, 5000);
 }
 
