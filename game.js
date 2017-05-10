@@ -222,7 +222,7 @@ function zombieSpawn() {
 			zombieCount.innerHTML = count;
 
 			if (count <= 0) {
-				win();
+				//win();
 				spawn = false;
 				console.log(spawn);
 			}
@@ -259,15 +259,11 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 	timer = setInterval(function (event) {
 		// function here
 
-		if (!cycleComplete) {
-			
-
-
+		
 			if (gender == 1) {
 
 				//clearInterval(timer);
 				//cycleComplete = false;
-
 
 				// BOY
 				switch (angerLevel) {
@@ -294,7 +290,7 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 						tray.innerHTML = ' ';
 						angerLevel = 0;
 						tablesArray[index] = false;
-						cycleComplete = true;
+						clearInterval(timer);
 						break;
 
 				}
@@ -325,12 +321,12 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 						tray.innerHTML = ' ';
 						angerLevel = 0;
 						tablesArray[index] = false;
-						cycleComplete = true;
+						clearInterval(timer);
 						break;
 
 				}
 			}
-		}
+		
 	}, 5000);
 }
 
