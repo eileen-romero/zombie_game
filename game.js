@@ -200,6 +200,15 @@ function zombieSpawn(){
 	//wrapped this function in if statement -----------------------------------------------------------------------------------------------------------------------------------------------
 	if(spawn)
 	{
+
+		// the round is winning when the last zombie spawns, not when it dies. trying moving this if statement or breaking it up ito places?
+		if (count <= 0) {
+				spawn = false;
+				console.log(spawn);
+				win();
+			}
+
+
 		var seat = Math.floor(Math.random()*5);
 		// If table is empty, then put a zombie there!
 		if(!tablesArray[seat]){
@@ -229,14 +238,10 @@ function zombieSpawn(){
 			}
 
 			// decreases hoard count
-			count--;
+			if(count > 0) count--;
 			zombieCount.innerHTML = count;
 			
-			if (count <=0) {
-				win();
-				spawn = false;
-				console.log(spawn);
-			}
+			
 		}
 	}
 
