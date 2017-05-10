@@ -72,7 +72,6 @@ body{
 .order img{
 	width: 300px;
 	height: auto;
-	transform: scaleX(-1);
 }
 
 #tb1{
@@ -174,6 +173,14 @@ body{
 	height: 70px;
 	background-color: #fff;
 	float:left;
+}
+
+.item{
+	margin: 20px;
+	width: 20px;
+	height: auto;
+	position: absolute;
+	top: 20px;
 }
 
 .selected{

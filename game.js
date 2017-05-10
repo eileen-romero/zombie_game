@@ -191,7 +191,7 @@ function zombieSpawn() {
 
 	if (spawn) {
 		var seat = Math.floor(Math.random() * 5);
-
+		var food = Math.floor(Math.random() * 4);
 
 
 		// If table is empty, then put a zombie there!
@@ -276,7 +276,7 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 			switch (angerLevel) {
 				case 0:
 					//check if food on table matches food in thought bubble
-					tb.innerHTML = '<img src="images/order.png">';
+					tb.innerHTML = '<img src="images/order.png"> <img src="images/eye.png" class="item">';
 					table.innerHTML = '<img src="images/z-boy_normal.png">';
 					angerLevel++;
 					break;
