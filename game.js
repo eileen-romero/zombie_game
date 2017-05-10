@@ -46,17 +46,19 @@ var count = zombieCount.innerHTML;
 // TIMER
 var playerTimer = setInterval(movePlayer,30);
 var gameTimer = setInterval(selectItem,30);
-var gameTime = setInterval(checkSpawn,30);
 
 
-function checkSpawn(){
-	if(spawn){
-		var spawnTimer = setInterval(zombieSpawn, 15000);
-	}else{
-		clearInterval(spawnTimer);
-		win();
-	}
-}
+//var gameTime = setInterval(checkSpawn,30);
+// function checkSpawn(){
+// 	if(spawn){
+// 		var spawnTimer = setInterval(zombieSpawn, 15000);
+// 	}else{
+// 		clearInterval(spawnTimer);
+// 		win();
+// 	}
+// }
+
+var spawnTimer = setInterval(zombieSpawn, 15000); // <-- moved this here and commented function up there ^ ---------------------------------------------
 
 
 var timer0;
@@ -195,44 +197,50 @@ function movePlayer(){
 
 function zombieSpawn(){
 
-	var seat = Math.floor(Math.random()*5);
-	// If table is empty, then put a zombie there!
-	if(!tablesArray[seat]){
-		// declares table is taken
-		tablesArray[seat] = true;
+	//wrapped this function in if statement -----------------------------------------------------------------------------------------------------------------------------------------------
+	if(spawn)
+	{
+		var seat = Math.floor(Math.random()*5);
+		// If table is empty, then put a zombie there!
+		if(!tablesArray[seat]){
+			// declares table is taken
+			tablesArray[seat] = true;
 
 
 
-		switch(seat){
-		
-		// places zombie in seat 
-		case 0:
-			angerSeat(table1, 0, angerLevel1, timer0,tb1);
-			break;	
-		case 1:
-			angerSeat(table2, 1, angerLevel2, timer1, tb2);
-			break;	
-		case 2:
-			angerSeat(table3, 2, angerLevel3, timer2, tb3);
-			break;
-		case 3:
-			angerSeat(table4, 3, angerLevel4, timer3, tb4);
-			break;
-		case 4:
-			angerSeat(table5, 4, angerLevel5, timer4, tb5);
-			break;	
-		}
+			switch(seat){
+			
+			// places zombie in seat 
+			case 0:
+				angerSeat(table1, 0, angerLevel1, timer0,tb1);
+				break;	
+			case 1:
+				angerSeat(table2, 1, angerLevel2, timer1, tb2);
+				break;	
+			case 2:
+				angerSeat(table3, 2, angerLevel3, timer2, tb3);
+				break;
+			case 3:
+				angerSeat(table4, 3, angerLevel4, timer3, tb4);
+				break;
+			case 4:
+				angerSeat(table5, 4, angerLevel5, timer4, tb5);
+				break;	
+			}
 
-		// decreases hoard count
-		count--;
-		zombieCount.innerHTML = count;
-		
-		if (count <=0) {
-			win();
-			spawn = false;
-			console.log(spawn);
+			// decreases hoard count
+			count--;
+			zombieCount.innerHTML = count;
+			
+			if (count <=0) {
+				win();
+				spawn = false;
+				console.log(spawn);
+			}
 		}
 	}
+
+	
 }
 
 function selectItem(){
