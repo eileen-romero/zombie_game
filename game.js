@@ -35,7 +35,8 @@ var angerLevel5 = 0;
 // HOARD COUNTER
 var zombieCount = document.getElementById("zombieCount");
 var deadZombies = 0;
-
+var count = zombieCount.innerHTML;
+var hoardSize = 5;
 
 // KITCHEN ITEMS
 var itemSelected = 0;
@@ -43,14 +44,14 @@ var itemSelected = 0;
 
 // PLAYER
 var player = document.getElementById('player');
-var count = zombieCount.innerHTML;
-var hoardSize = 5;
+var lives = document.getElementById('lives');
+var livesCount = lives.innerHTML.split("x").pop();
 var winning = false;
 
 // TIMER
-var playerTimer = setInterval(movePlayer, 30);
-var gameTimer = setInterval(selectItem, 30);
-var spawnTimer = setInterval(zombieSpawn, 1000);
+var playerTimer;
+var gameTimer;
+var spawnTimer;
 
 var timer0;
 var timer1;
@@ -58,8 +59,12 @@ var timer2;
 var timer3;
 var timer4;
 
-//create a thoughts array: this is where thought bubbles with food will be stored
+//Game Logic
+var startScreen = document.getElementById('start');
+var startButton = document.getElementById('startButton');
 
+var gameOver = document.getElementById('gameOver');
+var retryButton = document.getElementById('retry-btn');
 
 // ARRAYS
 var zombieGender = ["images/z-boy_normal.png",
@@ -91,9 +96,6 @@ document.getElementById("tray3"),
 document.getElementById("tray4"),
 document.getElementById("tray5")];
 
-
-
-
 // EVENT LISTENERS
 document.addEventListener("keydown", function (event) {
 	switch (event.keyCode) {
@@ -119,6 +121,85 @@ document.addEventListener("keydown", function (event) {
 	}
 
 });
+
+startButton.addEventListener("click", startGame);
+retryButton.addEventListener("click", reset);
+
+function reset() {
+	gameOver.style.visibility = "hidden";
+	livesCount = 4;
+	leftArrow = false;
+	rightArrow = false;
+	serve = false;
+	switchItem = false;
+	cycleComplete = false;
+	spawn = true;
+
+	angerLevel1 = 0;
+	angerLevel2 = 0;
+	angerLevel3 = 0;
+	angerLevel4 = 0;
+	angerLevel5 = 0;
+
+	deadZombies = 0;
+	count = 5;
+	zombieCount.innerHTML = "5";
+	hoardSize = 5;
+	itemSelected = 0
+
+	lives.innerHTML = "x4";
+	livesCount = 4;
+	winning = false;
+
+	clearInterval(timer0);
+	clearInterval(timer1);
+	clearInterval(timer2);
+	clearInterval(timer3);
+	clearInterval(timer4);
+
+	tablesArray = [false,
+		false,
+		false,
+		false,
+		false];
+
+	trayEmptyArray = [true,
+		true,
+		true,
+		true,
+		true,
+		true];
+
+	servedFood = [0, 0, 0, 0, 0];
+
+	table1.innerHTML = ' ';
+	table2.innerHTML = ' ';
+	table3.innerHTML = ' ';
+	table4.innerHTML = ' ';
+	table5.innerHTML = ' ';
+
+	tb1.innerHTML = ' ';
+	tb2.innerHTML = ' ';
+	tb3.innerHTML = ' ';
+	tb4.innerHTML = ' ';
+	tb5.innerHTML = ' ';
+
+	startGame();
+}
+
+function startGame() {
+	startScreen.style.visibility = "hidden";
+	playerTimer = setInterval(movePlayer, 30);
+	gameTimer = setInterval(selectItem, 30);
+	spawnTimer = setInterval(zombieSpawn, 1000);
+}
+
+function showGameOver() {
+	gameOver.style.visibility = "visible";
+	clearInterval(playerTimer);
+	clearInterval(gameOver);
+	clearInterval(spawnTimer);
+}
 
 
 function movePlayer() {
@@ -227,7 +308,6 @@ function zombieSpawn() {
 			zombieCount.innerHTML = count;
 
 			if (count <= 0) {
-				//win();
 				spawn = false;
 			}
 
@@ -319,6 +399,8 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 					tb.innerHTML = ' ';
 					angerLevel++;
 					//lose life
+					livesCount--;
+					lives.innerHTML = "x" + livesCount;
 					break;
 				case 3:
 					tb.innerHTML = ' ';
@@ -349,6 +431,8 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 					tb.innerHTML = ' ';
 					angerLevel++;
 					//lose life
+					livesCount--;
+					lives.innerHTML = "x" + livesCount;
 					break;
 				case 3:
 					tb.innerHTML = ' ';
@@ -363,10 +447,16 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 			}
 		}
 
+		if (livesCount == 0) {
+			showGameOver();
+		}
+
 	}, 5000);
 }
 
 function win() {
+	livesCount++;
+	lives.innerHTML = "x" + livesCount;
 	winning = true;
 	winScreen.style.visibility = "visible";
 	cont.addEventListener("click", continueGame);

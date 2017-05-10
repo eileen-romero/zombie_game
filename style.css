@@ -183,6 +183,22 @@ body{
 	top: 20px;
 }
 
+.ammo{
+	position: absolute;
+	top: 5px;
+	left: 1170px;
+}
+
+.ammo img{
+	height: 100px;
+	width: auto;
+	z-index: 180;
+}
+
+.ammo h1{
+	float: right;
+}
+
 .selected{
 	border:3px solid red;
 }
@@ -213,21 +229,26 @@ body{
 	width: 1360px;
 }
 
+/* GAME OVER*/
+#gameOver{
 
+}
 
+.gameOver{
+	width: 1360px;
+	height: 750px;
+	font-family: 'Oswald', sans-serif;
+	color: #fff;
+	position: absolute;
+	top: 9px;
+	visibility: hidden;
+	z-index: 200;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
+.gameOver img{
+	height: auto;
+	width: 1360px;
+}
 
 
 
@@ -301,6 +322,44 @@ body{
 /*START*/
 #start{
 	visibility:visible;
+}
+
+#startScreen{
+
+}
+
+.startScreen{
+	width: 1360px;
+	height: 750px;
+	font-family: 'Oswald', sans-serif;
+	color: #fff;
+	position: absolute;
+	top: 9px;
+	visibility: hidden;
+	z-index: 200;
+}
+
+.startScreen h1{
+	position: absolute;
+	top:12%;
+	left: 68%;
+	font-size: 100px;
+
+}
+
+.startScreen img{
+	height: auto;
+	width: 1360px;
+}
+
+.blood{
+	position: absolute;
+	top:0px;
+}
+
+.title{
+	position: absolute;
+	top:0px;
 }
 
 /*INSTRUCTIONS*/
@@ -390,10 +449,7 @@ body{
 	left: 400px;
 }
 
-.ammo img{
-	height: 100px;
-	width: auto;
-}
+
 
 
 
