@@ -188,6 +188,8 @@ function zombieSpawn() {
 	if (spawn) {
 		var seat = Math.floor(Math.random() * 5);
 
+		
+
 		// If table is empty, then put a zombie there!
 		if (!tablesArray[seat]) {
 			// declares table is taken
@@ -252,19 +254,19 @@ function selectItem() {
 function angerSeat(table, index, angerLevel, timer, tb, tray) {
 	// generates random gender
 	var gender = Math.floor(Math.random() * 2);
-
+	
 	//pick random food
 	timer = setInterval(function (event) {
 		// function here
 
-		if (cycleComplete) {
-			clearInterval(timer);
-			cycleComplete = false;
+		if (!cycleComplete) {
+			
 
 
 			if (gender == 1) {
 
-
+				//clearInterval(timer);
+				//cycleComplete = false;
 
 
 				// BOY
@@ -335,7 +337,7 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 function win() {
 	winScreen.style.visibility = "visible";
 	cont.addEventListener("click", continueGame);
-	clearInterval(gameTime);
+	clearInterval(gameTimer);
 }
 
 function continueGame() {
