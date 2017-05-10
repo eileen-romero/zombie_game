@@ -207,10 +207,19 @@ function movePlayer() {
 	}
 }
 
+<<<<<<< HEAD
 function zombieSpawn() {
 
 	if (spawn) {
 		var seat = Math.floor(Math.random() * 5);
+=======
+function zombieSpawn(){
+
+	//wrapped this function in if statement -----------------------------------------------------------------------------------------------------------------------------------------------
+	if(spawn)
+	{
+		var seat = Math.floor(Math.random()*5);
+>>>>>>> parent of 311bdab... fixed too many zombies spawning. still has error: round wins on last zombie spawn, not death
 		// If table is empty, then put a zombie there!
 		if (!tablesArray[seat]) {
 			// declares table is taken
@@ -238,6 +247,7 @@ function zombieSpawn() {
 			}
 
 			// decreases hoard count
+<<<<<<< HEAD
 			if (count > 0) count--;
 			zombieCount.innerHTML = count;
 			if (count <= 0) {
@@ -245,6 +255,16 @@ function zombieSpawn() {
 				console.log(spawn);
 			}
 
+=======
+			count--;
+			zombieCount.innerHTML = count;
+			
+			if (count <=0) {
+				win();
+				spawn = false;
+				console.log(spawn);
+			}
+>>>>>>> parent of 311bdab... fixed too many zombies spawning. still has error: round wins on last zombie spawn, not death
 		}
 	}
 
