@@ -48,31 +48,6 @@ var playerTimer = setInterval(movePlayer, 30);
 var gameTimer = setInterval(selectItem, 30);
 var spawnTimer = setInterval(zombieSpawn, 1000);
 
-
-// <<<<<<< Updated upstream
-//var gameTime = setInterval(checkSpawn,30);
-// function checkSpawn(){
-// 	if(spawn){
-// 		var spawnTimer = setInterval(zombieSpawn, 15000);
-// 	}else{
-// 		clearInterval(spawnTimer);
-// 		win();
-// 	}
-// }
-
-var spawnTimer = setInterval(zombieSpawn, 15000); // <-- moved this here and commented function up there ^ ---------------------------------------------
-// =======
-function checkSpawn() {
-	if (spawn) {
-		var spawnTimer = setInterval(zombieSpawn, 3000);
-	} else {
-		clearInterval(spawnTimer);
-		win();
-	}
-}
-
-
-
 var timer0;
 var timer1;
 var timer2;
@@ -289,68 +264,69 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 
 			if (gender == 1) {
 
-			}
 
 
-			// BOY
-			switch (angerLevel) {
-				case 0:
-					//check if food on table matches food in thought bubble
-					tb.innerHTML = '<img src="images/order.png">';
-					table.innerHTML = '<img src="images/z-boy_normal.png">';
-					angerLevel++;
-					break;
-				case 1:
-					//check if food on table matches food in thought bubble
-					table.innerHTML = '<img src="images/z-boy_angry.png">';
-					angerLevel++;
-					break;
-				case 2:
-					//check if food on table matches food in thought bubble, break
-					table.innerHTML = '<img src="images/z-boy_shot.png">';
-					tb.innerHTML = ' ';
-					angerLevel++;
-					//lose life
-					break;
-				case 3:
-					table.innerHTML = ' ';
-					tray.innerHTML = ' ';
-					angerLevel = 0;
-					tablesArray[index] = false;
-					cycleComplete = true;
-					break;
 
-			}
-		} else {
+				// BOY
+				switch (angerLevel) {
+					case 0:
+						//check if food on table matches food in thought bubble
+						tb.innerHTML = '<img src="images/order.png">';
+						table.innerHTML = '<img src="images/z-boy_normal.png">';
+						angerLevel++;
+						break;
+					case 1:
+						//check if food on table matches food in thought bubble
+						table.innerHTML = '<img src="images/z-boy_angry.png">';
+						angerLevel++;
+						break;
+					case 2:
+						//check if food on table matches food in thought bubble, break
+						table.innerHTML = '<img src="images/z-boy_shot.png">';
+						tb.innerHTML = ' ';
+						angerLevel++;
+						//lose life
+						break;
+					case 3:
+						table.innerHTML = ' ';
+						tray.innerHTML = ' ';
+						angerLevel = 0;
+						tablesArray[index] = false;
+						cycleComplete = true;
+						break;
 
-			// GIRL
-			switch (angerLevel) {
-				case 0:
-					//check if food on table matches food in thought bubble
-					tb.innerHTML = '<img src="images/order.png">';
-					table.innerHTML = '<img src="images/z-girl_normal.png">';
-					angerLevel++;
-					break;
-				case 1:
-					//check if food on table matches food in thought bubble
-					table.innerHTML = '<img src="images/z-girl_angry.png">';
-					angerLevel++;
-					break;
-				case 2:
-					//check if food on table matches food in thought bubble, break
-					table.innerHTML = '<img src="images/z-girl_shot.png">';
-					tb.innerHTML = ' ';
-					angerLevel++;
-					//lose life
-					break;
-				case 3:
-					table.innerHTML = ' ';
-					tray.innerHTML = ' ';
-					angerLevel = 0;
-					tablesArray[index] = false;
-					cycleComplete = true;
-					break;
+				}
+			} else {
 
+				// GIRL
+				switch (angerLevel) {
+					case 0:
+						//check if food on table matches food in thought bubble
+						tb.innerHTML = '<img src="images/order.png">';
+						table.innerHTML = '<img src="images/z-girl_normal.png">';
+						angerLevel++;
+						break;
+					case 1:
+						//check if food on table matches food in thought bubble
+						table.innerHTML = '<img src="images/z-girl_angry.png">';
+						angerLevel++;
+						break;
+					case 2:
+						//check if food on table matches food in thought bubble, break
+						table.innerHTML = '<img src="images/z-girl_shot.png">';
+						tb.innerHTML = ' ';
+						angerLevel++;
+						//lose life
+						break;
+					case 3:
+						table.innerHTML = ' ';
+						tray.innerHTML = ' ';
+						angerLevel = 0;
+						tablesArray[index] = false;
+						cycleComplete = true;
+						break;
+
+				}
 			}
 		}
 	}, 5000);
