@@ -36,6 +36,7 @@ var angerLevel5 = 0;
 var zombieCount = document.getElementById("zombieCount");
 var deadZombies = 0;
 
+
 // KITCHEN ITEMS
 var itemSelected = 0;
 
@@ -43,6 +44,8 @@ var itemSelected = 0;
 // PLAYER
 var player = document.getElementById('player');
 var count = zombieCount.innerHTML;
+var hoardSize = 5;
+var winning = false;
 
 // TIMER
 var playerTimer = setInterval(movePlayer, 30);
@@ -225,14 +228,13 @@ function zombieSpawn() {
 			if (count <= 0) {
 				//win();
 				spawn = false;
-				console.log(spawn);
 			}
 
 		}
 	}
 	else
 	{
-		if(deadZombies == 5)
+		if(deadZombies == hoardSize && !winning)
 		{
 			win();
 		}
@@ -296,7 +298,6 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 					angerLevel = 0;
 					tablesArray[index] = false;
 					deadZombies++;
-					console.log(index + " is dead");
 					clearInterval(timer);
 					break;
 
@@ -329,7 +330,6 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 					angerLevel = 0;
 					tablesArray[index] = false;
 					deadZombies++;
-					console.log(index + " is dead");
 					clearInterval(timer);
 					break;
 
@@ -340,6 +340,7 @@ function angerSeat(table, index, angerLevel, timer, tb, tray) {
 }
 
 function win() {
+	winning = true;
 	winScreen.style.visibility = "visible";
 	cont.addEventListener("click", continueGame);
 	clearInterval(gameTimer);
@@ -347,4 +348,10 @@ function win() {
 
 function continueGame() {
 	winScreen.style.visibility = "hidden";
+
+	deadZombies = 0;
+	spawn = true;
+	hoardSize += 5;
+	count = hoardSize;
+	winning = false;
 }
